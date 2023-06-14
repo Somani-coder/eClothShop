@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title> login </title>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts,googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+
+    <body>
+        
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="https://i.pinimg.com/564x/fd/83/c5/fd83c5d3c62594a851ecd31abf1109b9.jpg" width="125px">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Products</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="">Account</a></li>
+                    </ul>
+                </nav>
+                <img src="https://i.pinimg.com/564x/9e/b3/1f/9eb31f1397aa013972c607f8d38923fd.jpg" width="30px" height="30px">
+                <img
+                    src="https://w7.pngwing.com/pngs/813/633/png-transparent-burger-line-list-menu-nav-navigation-option-mobile-basic-icon-thumbnail.png"
+                    class="menu-icon">
+            </div>
+        </div>
+        <!------------- Account Page ------------>
+        <div class="account-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="https://pngimg.com/d/football_player_PNG9.png" width="100%">
+                    </div>
+
+                    <div class="form-container">
+                        <div class="form-btn">
+                            <span>Login/Register</span>
+
+                        </div>
+                        <!--                      <form id="LoginForm">
+                                                  <input type="Text" placeholder="Username">
+                                                   <input type="Password" placeholder="Password">
+                                                   <button type="submit" class="btn">Login</button>
+                                                   <a href="">Forgot Passwrd</a>
+                                              </form>-->
+
+                        <form id="RegForm">
+                            <input type="Text" placeholder="Username">
+                            <input type="Password" placeholder="Password">
+                            <button type="submit" class="btn">Login</button>
+                            <li><a href="regmodal.html">Sign Up</button</a></li>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!------------ Footer ------------->
+        <div class="footer">
+            <div class="Brands">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col-1">
+                            <h3>Download Our App</h3>
+                            <p>Download App For Android And ios Mobile Phone.</p>
+                        </div>
+                        <div class="footer-col-2">
+                            <img src="https://i.pinimg.com/564x/fd/83/c5/fd83c5d3c62594a851ecd31abf1109b9.jpg">
+                            <p>Our Purpose Is To Sustainably Make The Pleasure And Benifits Of Buying and renting The Products To the
+                                many.</p>
+                        </div>
+                        <div class="footer-col-3">
+                            <h3>Useful Links</h3>
+                            <ul>
+                                <li>Coupons</li>
+                                <li>Blog Post</li>
+                                <li>Return Policy</li>
+                                <li>Join Affiliate</li>
+                            </ul>
+                        </div>
+                        <div class="footer-col-4">
+                            <h3>Follow Us</h3>
+                            <ul>
+                                <li>Facebook</li>
+                                <li>Twitter</li>
+                                <li>Instagram</li>
+                                <li>YouTube</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!------------js for toggle menu------------->
+
+        <script type='text/javascript'>
+            var MenuItems = document.getElementById("MenuItems");
+            //MenuItems.style.maxHeight == "0px";
+            function  menutoggle() {
+                if (MenuItems.style.maxHeight == "0px")
+                {
+                    MenuItems.style.maxHeight = "200px";
+                }
+                else {
+                    MenuItems.style.maxHeight = "0px";
+                }
+            }
+            var modal = document.getElementById("id01");
+
+// Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+// When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+            function onclickModal()
+            {
+                alert("modal clicked..")
+                console.log("modal clicked")
+                document.getElementById('id01').style.display = 'none';
+            }
+
+        </script>
+
+        <!------------js for product gallery-------->
+
+
+
+    </body>
+
+</html>
+
