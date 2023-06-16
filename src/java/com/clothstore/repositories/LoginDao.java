@@ -23,12 +23,14 @@ public class LoginDao {
     public static boolean validate(String name, String pass) {
         boolean status = false;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/somani",
-                    "root", "Jayjagannath@1991!");
-//Connection con=DriverManager.getConnection(  
-//"jdbc:mysql://localhost:3306/somani\",\"LIPSITA\",\"Jayjagannath@1991!");  
+            String url = "jdbc:mysql://localhost:3306/somani?useSSL=false"; 
+        String user = "root";
+        String password = "Jayjagannath@1991!";
+        String query = "Select * from students";
+        
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(url, user, password);  
+           
 
             PreparedStatement ps = con.prepareStatement(
                     "select * from user where name=? and userPass=?");

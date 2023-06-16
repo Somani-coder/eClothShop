@@ -3,23 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/regmodal.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/controller/LoginController.java</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/female-section.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/male-section.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/explorenow3.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/explorenow.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/jwellary-section.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/index.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/products.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/about.html</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/repositories/LoginDao.java</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/controller/LoginController.java</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/login.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/repositories/RegisterDao.java</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/ProductDetails.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/style.css</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/cart.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/explorenow_2.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/model/Response.java</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/model/User.java</file>
         </group>
     </open-files>
 </project-private>
