@@ -19,11 +19,11 @@
       </div>
       <nav>
         <ul>
-          <li><a href="">Home</a></li>
-          <li><a href="">Products</a></li>
-          <li><a href="">About</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="">Contact</a></li>
-          <li><a href="">Account</a></li>
+          <li><a href="login.html">Account</a></li>
         </ul>
       </nav>
       <img src="https://i.pinimg.com/564x/9e/b3/1f/9eb31f1397aa013972c607f8d38923fd.jpg" width="30px" height="30px">
@@ -61,9 +61,9 @@
       </div>
       <div class="col-2">
         <p>Home / T-shirt</p>
-        <h1>Red Printed T-Shirt By Puma</h1>
-        <h4>price: ₹499</h4>
-        <select>
+        <h1 id="desc">Red Printed T-Shirt By Puma</h1>
+        <h4 id ="price">price: ₹499</h4>
+        <select id = "size">
           <option>Select Size</option>
           <option>XXL</option>
           <option>XL</option>
@@ -72,8 +72,8 @@
           <option>S</option>
           <option>XS</option>
         </select>
-        <input type="number" value="1">
-        <a href="" class="btn">Add To Cart</a>
+        <input type="number" id="quantity" value="1">
+        <button onClick="addToCart(101,'Red Printed T-Shirt By Puma','499',document.getElementById('size').value,document.getElementById('quantity').value)">Add To Cart</button>
         <h3>Product Details <i class="fa fa-indent"></i></h3>
         <br>
         <p>A fiery lion on a fiery red t-shirt is just the thing you need to ignite the fierceness inside you and appear your most confident. What makes this t-shirt more intriguing and exclusive is that the lion graphic is inspired by bohemian styles and patterns. It has been given a completely bohemian outline and inward design.</p>
@@ -177,19 +177,41 @@
     </div>
   </div>
     <!------------js for toggle menu------------->
-
-    <script>
-      var MenuItems = document.getElementById("MenuItems");
-      MenuItems.style.maxHeight == "0px";
-      function  menutoggle(){
-        if(MenuItems.style.maxHeight == "0px")
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+     <script type="text/javascript">
+        function addToCart(prouctId ,desc, price , size , quantity)
         {
-          MenuItems.style.maxHeight = "200px";
+            alert("addtocart clicked..")
+            alert("price "+price)
+            alert("desc"+desc)
+            alert("productid"+prouctId)
+            alert("size"+size)
+            alert("quantity"+quantity)
         }
-        else{
-          MenuItems.style.maxHeight = "0px";
-        }
-      }
+//        var noti = document.querySelector('h1');
+//        var select = document.querySelector('.select');
+//        var button = document.getElementByName('button');
+//        for(but of button)
+//        {
+//            but.addEventListener('click', (e)=>{
+//                var add = Number(noti.getAttribute('data-count')|| 0);
+//                noti.setAttribute('data-count', add + 1);
+//                noti.classList.add('zero');
+//                
+//                //copy and paste element//
+//                var parent = e.target.parentNode;
+//                var clone = parent.clone(true);
+//                select.appendChild(clone);
+//                select.lastElementChild.innerText = "Add To Cart";
+//                if (clone) {
+//                    noti.onclick =()=>{
+//                        select.classList.toggle('display');
+//                    }
+//                }
+//            })
+//        }
+        
+      
     </script>
   </div>
 </body>

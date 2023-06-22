@@ -150,6 +150,26 @@ col-2 img{
 .col-4:hover{
   transform: translateY(-6px);
 }
+*{
+    padding: 0;
+    margin: 0;
+    color: #454545;
+}
+h1{
+    width: 3%;
+    position: relative;
+    top: 60px;
+    left: 90%;
+    cursor: pointer;
+}
+h1:before{
+    content: attr(data-count);
+    position: absolute;
+    color: white;
+    right: 16px;
+    font-size: 15px;
+    te
+}
 
 /*-------------Offer------------*/
 .Offer{

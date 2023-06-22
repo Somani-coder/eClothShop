@@ -23,14 +23,13 @@ public class LoginDao {
     public static boolean validate(String name, String pass) {
         boolean status = false;
         try {
-            String url = "jdbc:mysql://localhost:3306/somani?useSSL=false"; 
-        String user = "root";
-        String password = "Jayjagannath@1991!";
-        String query = "Select * from students";
-        
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection(url, user, password);  
-           
+            String url = "jdbc:mysql://localhost:3306/somani?useSSL=false";
+            String user = "root";
+            String password = "Jayjagannath@1991!";
+            String query = "Select * from students";
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, user, password);
 
             PreparedStatement ps = con.prepareStatement(
                     "select * from user where name=? and userPass=?");
@@ -44,6 +43,31 @@ public class LoginDao {
             System.out.println(e);
         }
         return status;
+    }
+
+    public static String registerNewUser(String email, String pwd) {
+        String regStatus = "";
+        try {
+            String url = "jdbc:mysql://localhost:3306/somani?useSSL=false";
+            String user = "root";
+            String password = "Jayjagannath@1991!";
+           
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, user, password);
+
+            PreparedStatement ps = con.prepareStatement(
+                    "insert into user values(?,?)") ;
+            ps.setString(1, email);
+            ps.setString(3, pwd);
+
+            ResultSet rs = ps.executeQuery();
+            //status = rs.next();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return regStatus;
     }
 
 }

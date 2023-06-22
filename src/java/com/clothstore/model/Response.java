@@ -10,6 +10,7 @@ package com.clothstore.model;
  * @author LIPSITA
  */
 public class Response {
+
     private String status;
     private int statusCode;
     private String msg;
@@ -37,5 +38,5 @@ public class Response {
     public void setMsg(String msg) {
         this.msg = msg;
     }
-    
+
 }

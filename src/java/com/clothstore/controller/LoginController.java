@@ -8,6 +8,7 @@ package com.clothstore.controller;
 import com.clothstore.model.Response;
 import com.clothstore.model.User;
 import com.clothstore.repositories.LoginDao;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -52,6 +53,8 @@ public class LoginController extends HttpServlet {
 
             // 2. initiate jackson mapper
             ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonNode = mapper.readTree(json);
+            String command = jsonNode.get("command").asText();
 
             // 3. Convert received JSON to Article
             User user = mapper.readValue(json, User.class);
@@ -60,33 +63,52 @@ public class LoginController extends HttpServlet {
             response.setContentType("application/json");
             String un = user.getuName();
             String up = user.getuPass();
-            boolean statusLogin = LoginDao.validate(un, up);
+            if (command.equals("Loin")) {
+                boolean statusLogin = LoginDao.validate(un, up);
 
-            PrintWriter writer = response.getWriter();
-            JSONObject obj = new JSONObject();
+                PrintWriter writer = response.getWriter();
+                JSONObject obj = new JSONObject();
 
-            response.setStatus(200);
-            //System.out.println(obj.get("message"));
+                response.setStatus(200);
+                //System.out.println(obj.get("message"));
 
-            if (statusLogin == true) {
-                Response res = new Response();
-                res.setMsg("Welcome ! You are logged in successfully..");
-                res.setStatus("success");
-                res.setStatusCode(200);
-                obj.put("message", res.getMsg());
-                writer.append(obj.toString());
-                writer.close();
-                //mapper.writeValue(response.getOutputStream(), res);
+                if (statusLogin == true) {
+                    Response res = new Response();
+                    res.setMsg("Welcome ! You are logged in successfully..");
+                    res.setStatus("success");
+                    res.setStatusCode(200);
+                    obj.put("message", res.getMsg());
+                    writer.append(obj.toString());
+                    writer.close();
+                    //mapper.writeValue(response.getOutputStream(), res);
 
-            } else {
-                Response res = new Response();
-                res.setMsg("Not authorized ! Please register first.");
-                res.setStatus("failed");
-                res.setStatusCode(500);
-                obj.put("message", res.getMsg());
-                writer.append(obj.toString());
-                writer.close();
-                //mapper.writeValue(response.getOutputStream(), res);
+                } else {
+                    Response res = new Response();
+                    res.setMsg("Not authorized ! Please register first.");
+                    res.setStatus("failed");
+                    res.setStatusCode(500);
+                    obj.put("message", res.getMsg());
+                    writer.append(obj.toString());
+                    writer.close();
+                    //mapper.writeValue(response.getOutputStream(), res);
+                }
+            } else if (command.equals("Register")) {
+                String registrationStatus = LoginDao.registerNewUser(un, up);
+                PrintWriter writer = response.getWriter();
+                JSONObject obj = new JSONObject();
+               
+
+                response.setStatus(200);
+                if (registrationStatus.equals("Success")) {
+                    Response res = new Response();
+                    res.setMsg("Welcome ! You are registered successfully..");
+                    res.setStatus("success");
+                    res.setStatusCode(200);
+                    obj.put("message", res.getMsg());
+                    writer.append(obj.toString());
+                    writer.close();
+                }
+
             }
 
         }

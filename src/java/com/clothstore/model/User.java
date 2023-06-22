@@ -10,6 +10,7 @@ package com.clothstore.model;
  * @author LIPSITA
  */
 public class User {
+
     private String uName;
     private String uPass;
 

@@ -56,7 +56,7 @@
                         <div id="RegForm">
                             <input type="Text" placeholder="Username" name="userName" id ="userName">
                             <input type="Password" placeholder="Password" name ="userPass" id="userPass">
-                            <button  onclick = "loginUser(document.getElementById('userName').value, document.getElementById('userPass').value)" class="btn">Login</button>
+                            <button  onclick = "loginUser(document.getElementById('userName').value, document.getElementById('userPass').value,'Login')" class="btn">Login</button>
                             <li><a href="regmodal.html">Sign Up</button</a></li>
 
                         </div>
@@ -149,13 +149,14 @@
                                     console.log("modal clicked")
                                     document.getElementById('id01').style.display = 'none';
                                 }
-                                function loginUser(uName, uPass)
+                                function loginUser(uName, uPass,cmd)
                                 {
                                     var loginData = new Object();
                                     loginData.uName = uName;
                                     loginData.uPass = uPass;
+                                    loginData.command = cmd;
+                                 
 
-                                    var jsonData = {jsonObj: [{"uName": "' + uName+ '", "uPass": "'+uPass+'"}]};
 
                                     $.ajax({
                                         type: "POST",
@@ -163,19 +164,25 @@
                                         data: JSON.stringify(loginData),
                                         contentType: "application/json; charset=utf-8",
                                         dataType: "json",
-                                        success: function(response){
+                                        success: function (response) {
                                             alert(response.message);
-                                             window.location.href = "index.html";
+                                            if (response.message === 'Welcome ! You are logged in successfully..')
+                                            {
+                                                window.location.href = "index.html";
+                                            } else
+                                            {
+                                                window.location.href = "regmodal.html";
+                                            }
                                         },
-                                        
                                         failure: function (response) {
-                                             alert(response.message);
+                                            alert(response.message);
+                                            location.href = "regmodal.html";
                                         }
                                     });
                                 }
 
                                 function OnSuccess(response) {
-                                    
+
                                     alert(response.message());
                                 }
 

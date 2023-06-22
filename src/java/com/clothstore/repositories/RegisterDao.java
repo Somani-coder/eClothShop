@@ -30,10 +30,12 @@ public class RegisterDao {
             ps.setString(2, pass);
 
             ResultSet rs = ps.executeQuery();
-            status = rs.next();
+           // status = rs.next();
 
         } catch (Exception e) {
             System.out.println(e);
         }
+        return false;
 }
+
 }
