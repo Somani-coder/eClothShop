@@ -94,6 +94,9 @@
                 </table>
 
             </div>
+            <img
+                src="https://assets.stickpng.com/images/5862ee977d90850fc3ce290e.png"
+                class="menu-icon">
 
 
 
@@ -147,30 +150,38 @@
         <script type="text/javascript">
                         function updateCartDetail()
                         {
-                            alert(localStorage.getItem('cartData'));
-                            var productsSelected = JSON.parse(localStorage.getItem('cartData'));
-                            alert(productsSelected);
-                            buildTable(productsSelected);
+                            var userData = new Object();
+                            userData.uName = "somani@gmail.com";
+
+                            userData.command = "FetchCart";
+
+                            $.ajax({
+                                type: "POST",
+                                url: "http://localhost:8080/eClothShop/CartItems",
+                                data: JSON.stringify(userData),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (response) {
+                                    alert(response.message);
+
+                                },
+                                failure: function (response) {
+                                    alert(response.message);
+                                    //  location.href = "regmodal.html";
+                                }
+                            });
+//                            alert(localStorage.getItem('cartData'));
+//                            var productsSelected = JSON.parse(localStorage.getItem('cartData'));
+//                            alert(productsSelected);
+                            // buildTable(productsSelected);
                         }
+                        function OnSuccess(response) {
+
+                            alert(response.message());
+                            buildTable(response);
+                        }
+
                         function buildTable(data) {
-
-//                            $(function () {
-//                                $.each(data['products'], function (i, item) {
-//                                    var $tr = $('<tr>').append(
-//                                            $('<td>').text(item.description),
-//                                            $('<td>').text(item.quantity),
-//                                            $('<td>').text(item.price)
-//                                            ); //.appendTo('#records_table');
-//                                    console.log($tr.wrap('<p>').html());
-//                                });
-//                            });
-
-
-
-
-
-
-
                             console.log("build table function called", data);
                             var table = document.getElementById('myTable');
                             var prdts = data['products'];
@@ -187,11 +198,11 @@
                                     var td3 = document.createElement('td');
                                     var tdd = prdts[rowindex].source;
                                     var img = document.createElement('img');
-                                    img.src =tdd;
+                                    img.src = tdd;
                                     //document.getElementById('body').appendChild(img);
                                     //var text1 = document.
                                     var text2 = document.createTextNode(prdts[rowindex].quantity);
-                                    var totalprice =prdts[rowindex].quantity * prdts[rowindex].price;
+                                    var totalprice = prdts[rowindex].quantity * prdts[rowindex].price;
                                     var text3 = document.createTextNode(totalprice);
 
                                     td1.appendChild(img);

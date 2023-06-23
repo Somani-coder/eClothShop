@@ -5,29 +5,25 @@
  */
 package com.clothstore.controller;
 
-import com.clothstore.model.Response;
 import com.clothstore.model.User;
-import com.clothstore.repositories.LoginDao;
+import com.clothstore.repositories.CartDao;
+import com.clothstore.repositories.FetchCartDetails;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  *
  * @author LIPSITA
  */
-public class LoginController extends HttpServlet {
+public class CartItems extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +35,10 @@ public class LoginController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, JSONException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            BufferedReader br
+           BufferedReader br
                     = new BufferedReader(new InputStreamReader(request.getInputStream()));
 
             String json = "";
@@ -62,55 +58,9 @@ public class LoginController extends HttpServlet {
             // 4. Set response type to JSON
             response.setContentType("application/json");
             String un = user.getuName();
-            String up = user.getuPass();
-            if (command.equals("Login")) {
-                boolean statusLogin = LoginDao.validate(un, up);
-
-                PrintWriter writer = response.getWriter();
-                JSONObject obj = new JSONObject();
-
-                response.setStatus(200);
-                //System.out.println(obj.get("message"));
-
-                if (statusLogin == true) {
-                    Response res = new Response();
-                    res.setMsg("Welcome ! You are logged in successfully..");
-                    res.setStatus("success");
-                    res.setStatusCode(200);
-                    obj.put("message", res.getMsg());
-                    writer.append(obj.toString());
-                    writer.close();
-                    mapper.writeValue(response.getOutputStream(), res);
-
-                } else {
-                    Response res = new Response();
-                    res.setMsg("Not authorized ! Please register first.");
-                    res.setStatus("failed");
-                    res.setStatusCode(500);
-                    obj.put("message", res.getMsg());
-                    writer.append(obj.toString());
-                    writer.close();
-                    mapper.writeValue(response.getOutputStream(), res);
-                }
-            } else if (command.equals("Register")) {
-                String registrationStatus = LoginDao.registerNewUser(un, up);
-                PrintWriter writer = response.getWriter();
-                JSONObject obj = new JSONObject();
-               
-
-                response.setStatus(200);
-                if (registrationStatus.equals("Success")) {
-                    Response res = new Response();
-                    res.setMsg("Welcome ! You are registered successfully..");
-                    res.setStatus("success");
-                    res.setStatusCode(200);
-                    obj.put("message", res.getMsg());
-                    writer.append(obj.toString());
-                    writer.close();
-                }
-
+            if (command.equals("FetchCart")) {
+                FetchCartDetails.fetchProductList(user);
             }
-
         }
     }
 
@@ -126,11 +76,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (JSONException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -144,11 +90,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (JSONException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
