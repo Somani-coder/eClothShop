@@ -201,8 +201,37 @@
                             var obj = JSON.parse(productData);
                             obj['products'].push({"productId": productId, "description": desc, "price": price, "quantity": quantity, "size": size, "source": img});
                             localStorage.setItem("cartData", JSON.stringify(obj));
+                            
+                            
+                            //calling backend to store cart details
+                             $.ajax({
+                                        type: "POST",
+                                        url: "http://localhost:8080/eClothShop/addCart",
+                                        data: JSON.stringify(obj),
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "json",
+                                        success: function (response) {
+                                            alert(response.message);
+                                            if (response.message === 'Added to cart successfully..')
+                                            {
+                                                alert("saved to cart")
+                                               // window.location.href = "index.html";
+                                            } else
+                                            {
+                                                //window.location.href = "regmodal.html";
+                                            }
+                                        },
+                                        failure: function (response) {
+                                            alert(response.message);
+                                          //  location.href = "regmodal.html";
+                                        }
+                                    });
 
                         }
+                         function OnSuccess(response) {
+
+                                    alert(response.message());
+                                }
                         //        var noti = document.querySelector('h1');
                         //        var select = document.querySelector('.select');
                         //        var button = document.getElementByName('button');

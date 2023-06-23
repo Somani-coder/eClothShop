@@ -174,22 +174,27 @@
                             console.log("build table function called", data);
                             var table = document.getElementById('myTable');
                             var prdts = data['products'];
-
+                            var noOfrows = prdts.length;
+                            var rowindex = 0;
                             for (var i = 0; i < prdts.length; i++) {
 
-                                for (var i = 1; i < 3; i++) {
+                                for (var j = 1; j <= noOfrows; j++) {
                                     var table = document.getElementById('myTable');
                                     var tr = document.createElement('tr');
 
                                     var td1 = document.createElement('td');
                                     var td2 = document.createElement('td');
                                     var td3 = document.createElement('td');
+                                    var tdd = prdts[rowindex].source;
+                                    var img = document.createElement('img');
+                                    img.src =tdd;
+                                    //document.getElementById('body').appendChild(img);
+                                    //var text1 = document.
+                                    var text2 = document.createTextNode(prdts[rowindex].quantity);
+                                    var totalprice =prdts[rowindex].quantity * prdts[rowindex].price;
+                                    var text3 = document.createTextNode(totalprice);
 
-                                    var text1 = document.createTextNode(d1);
-                                    var text2 = document.createTextNode(prdts['quantity']);
-                                    var text3 = document.createTextNode(prdts['price']);
-
-                                    td1.appendChild(text1);
+                                    td1.appendChild(img);
                                     td2.appendChild(text2);
                                     td3.appendChild(text3);
                                     tr.appendChild(td1);
@@ -202,9 +207,10 @@
 
 
 
-                                var tdata = prdts['source'];
-                                var row = '<tr><td>${}</td> <td>prdts[quantity]</td><td>${prdts[price]}</td></tr>';
-                                table.innerHTML += row;
+//                                var tdata = prdts['source'];
+//                                var row = '<tr><td>${}</td> <td>prdts[quantity]</td><td>${prdts[price]}</td></tr>';
+//                                table.innerHTML += row;
+                                startIndex++;
 
                             }
                         }
