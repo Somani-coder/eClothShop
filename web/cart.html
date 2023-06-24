@@ -39,7 +39,9 @@
                 <tr>
                     <th>product</th>
                     <th>Quantity</th>
+                    <th>Size</th>
                     <th>Total</th>
+                    <th>action</th>
                 </tr>
                 <tbody id="myTable">
                 </tbody>
@@ -76,28 +78,22 @@
             </table>
 
             <div class="total-price">
-                <table>
+                <table id ="totalCartAmountTable">
                     <tr>
                         <td>Subtotal</td>
                     <button type="button" onClick="updateCartDetail()">Click Me!</button>
                     </tr>
-                    <tr>
-                        <td>Tax</td>
-                        <td>₹999.00</td>
 
-                    </tr>
                     <tr>
                         <td>Total</td>
-                        <td>₹999.00</td>
+                        <td id ="amount"></td>
 
                     </tr>
                 </table>
 
             </div>
-            <img
-                src="https://assets.stickpng.com/images/5862ee977d90850fc3ce290e.png"
-                class="menu-icon">
-
+            
+            <li><button type="button" onclick="rediredtToOrder()" >Buy Now</button> </li>
 
 
 
@@ -162,7 +158,14 @@
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
                                 success: function (response) {
-                                    alert(response.message);
+                                    buildTable(response);
+                                    //                                   $.each(response, function () {
+
+//                                        $.each(this, function (key, value) {
+//                                            alert(key);
+//                                            alert(value);
+//                                        });
+                                    //                                   });
 
                                 },
                                 failure: function (response) {
@@ -181,49 +184,74 @@
                             buildTable(response);
                         }
 
-                        function buildTable(data) {
-                            console.log("build table function called", data);
+                        function buildTable(prdts) {
+                            console.log("build table function called", prdts);
                             var table = document.getElementById('myTable');
-                            var prdts = data['products'];
+                            //var prdts = data['products'];
                             var noOfrows = prdts.length;
                             var rowindex = 0;
+                            var startIndex = 0;
+                            var tr;
+                            var table = document.getElementById('myTable');
+                            var subtotalAmount = 0;
                             for (var i = 0; i < prdts.length; i++) {
-
-                                for (var j = 1; j <= noOfrows; j++) {
-                                    var table = document.getElementById('myTable');
-                                    var tr = document.createElement('tr');
-
-                                    var td1 = document.createElement('td');
-                                    var td2 = document.createElement('td');
-                                    var td3 = document.createElement('td');
-                                    var tdd = prdts[rowindex].source;
-                                    var img = document.createElement('img');
-                                    img.src = tdd;
-                                    //document.getElementById('body').appendChild(img);
-                                    //var text1 = document.
-                                    var text2 = document.createTextNode(prdts[rowindex].quantity);
-                                    var totalprice = prdts[rowindex].quantity * prdts[rowindex].price;
-                                    var text3 = document.createTextNode(totalprice);
-
-                                    td1.appendChild(img);
-                                    td2.appendChild(text2);
-                                    td3.appendChild(text3);
-                                    tr.appendChild(td1);
-                                    tr.appendChild(td2);
-                                    tr.appendChild(td3);
+                                tr = document.createElement('tr');
+                                // for (var j = 1; j <= 3; j++) {
 
 
-                                    table.appendChild(tr);
+
+                                var td1 = document.createElement('td');
+                                var td2 = document.createElement('td');
+                                var td3 = document.createElement('td');
+                                var td4 = document.createElement('td');
+                                var td5 =document.createElement('td');
+                                var tdd = prdts[rowindex].source;
+                                var img = document.createElement('img');
+                                img.src = tdd;
+                                //document.getElementById('body').appendChild(img);
+                                //var text1 = document.
+                                var text2 = document.createTextNode(prdts[rowindex].quantity);
+                                var totalprice = prdts[rowindex].quantity * prdts[rowindex].price;
+                                subtotalAmount=subtotalAmount +totalprice;
+                                var text3 = document.createTextNode(totalprice);
+                                var size = document.createTextNode(prdts[rowindex].size);
+                                var remvBtn = document.createElement('button');
+                                remvBtn.innerHTML = "REMOVE";
+                                remvBtn.onclick = function ()
+                                {
+                                    alert("removed.");
+                                    removeFromCart();
                                 }
+
+                                td1.appendChild(img);
+                                td2.appendChild(text2);
+                                td3.appendChild(text3);
+                                td4.appendChild(remvBtn);
+                                tr.appendChild(td1);
+                                tr.appendChild(td2);
+                                tr.appendChild(size);
+                                tr.appendChild(td3);
+                                tr.appendChild(td4);
+
+
+                                //table.appendChild(tr);
+                                //    }
+                                table.appendChild(tr);
 
 
 
 //                                var tdata = prdts['source'];
 //                                var row = '<tr><td>${}</td> <td>prdts[quantity]</td><td>${prdts[price]}</td></tr>';
 //                                table.innerHTML += row;
-                                startIndex++;
+                                rowindex++;
 
                             }
+                            document.getElementById('amount').innerHTML = subtotalAmount;
+                        }
+                        
+                        function rediredtToOrder()
+                        {
+                            window.location.href = "orderdetailspage.html";
                         }
         </script>
     </body>

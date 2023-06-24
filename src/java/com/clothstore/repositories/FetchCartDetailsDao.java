@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author LIPSITA
  */
-public class FetchCartDetails {
+public class FetchCartDetailsDao {
 
     public static List<Product> fetchProductList(User usr) {
         List<Product> cartProducts = new ArrayList<>();
@@ -31,18 +31,22 @@ public class FetchCartDetails {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, user, password);
             PreparedStatement ps = con.prepareStatement(
-                    "select * from carttable where pid=?");
-            ps.setInt(1, 101);
+                    "select * from carttable");
+           // ps.setString(7, usr.getuName());
 
             ResultSet rs = ps.executeQuery();
            while(rs.next())
            {
-               int prdId =rs.getInt(1);
-               String desc=rs.getString(2);
-               int price=rs.getInt(3);
-               int qnty=rs.getInt(4);
-               String size = rs.getString(5);
-               String src=rs.getString(6);
+               Product product = new Product();
+               
+               product.setProductId(rs.getInt(1));
+               product.setDescription(rs.getString(2));
+               product.setPrice(rs.getInt(3));
+               product.setQuantity(rs.getInt(4));
+               product.setSize(rs.getString(5));
+               product.setSource(rs.getString(6));
+               
+               cartProducts.add(product);
            }
             System.out.println();
         } catch (Exception e) {

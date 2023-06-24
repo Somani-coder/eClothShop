@@ -5,28 +5,30 @@
  */
 package com.clothstore.controller;
 
-import com.clothstore.model.Product;
-import com.clothstore.model.User;
-import com.clothstore.repositories.CartDao;
-import com.clothstore.repositories.FetchCartDetailsDao;
+import com.clothstore.model.OrderDetails;
+import com.clothstore.model.Response;
+import com.clothstore.repositories.OrderDao;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
  * @author LIPSITA
  */
-public class CartItems extends HttpServlet {
+public class PlaceOrderController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,33 +40,49 @@ public class CartItems extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, JSONException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            BufferedReader br
-                    = new BufferedReader(new InputStreamReader(request.getInputStream()));
+                = new BufferedReader(new InputStreamReader(request.getInputStream()));
 
-            String json = "";
-            if (br != null) {
-                json = br.readLine();
-                System.out.println(json);
-            }
+        String json = "";
+        if (br != null) {
+            json = br.readLine();
+            System.out.println(json);
+        }
 
-            // 2. initiate jackson mapper
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode jsonNode = mapper.readTree(json);
-            String command = jsonNode.get("command").asText();
+        // 2. initiate jackson mapper
+        ObjectMapper mapper = new ObjectMapper();
 
-            // 3. Convert received JSON to Article
-            User user = mapper.readValue(json, User.class);
+        JsonNode jsonNode = mapper.readTree(json);
+        String command = jsonNode.get("action").asText();
+        ArrayNode products = (ArrayNode)jsonNode.get("products");
+        
+       // String jsonStr = products.asText();
+        Gson gson = new Gson();
+        OrderDetails order[] = gson.fromJson(products.toString(), OrderDetails[].class);
 
-            // 4. Set response type to JSON
-            response.setContentType("application/json");
-            String un = user.getuName();
-            if (command.equals("FetchCart")) {
-               List<Product> cartProducts = FetchCartDetailsDao.fetchProductList(user);
-               new Gson().toJson(cartProducts, response.getWriter());
-            }
+        boolean status = OrderDao.placeOrder(Arrays.asList(order));
+        // 3. Convert received JSON to Article
+        //Product product = mapper.readValue(json, Product.class);
+                   // (products, Product.class);
+
+        // 4. Set response type to JSON
+        response.setContentType("application/json");
+        PrintWriter writer = response.getWriter();
+                JSONObject obj = new JSONObject();
+        if(status == true)
+        {
+            Response res = new Response();
+                    res.setMsg("Added to order successfully..");
+                    res.setStatus("success");
+                    res.setStatusCode(200);
+                    obj.put("message", res.getMsg());
+                    writer.append(obj.toString());
+                    writer.close();
+                    mapper.writeValue(response.getOutputStream(), res);
+        }
         }
     }
 

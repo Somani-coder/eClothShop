@@ -13,12 +13,16 @@
         <servlet-class>com.clothstore.controller.AddCartController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>FetchCartProductsController</servlet-name>
-        <servlet-class>com.clothstore.controller.FetchCartProductsController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CartItems</servlet-name>
         <servlet-class>com.clothstore.controller.CartItems</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderController</servlet-name>
+        <servlet-class>com.clothstore.controller.OrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlaceOrderController</servlet-name>
+        <servlet-class>com.clothstore.controller.PlaceOrderController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -33,12 +37,16 @@
         <url-pattern>/addCart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>FetchCartProductsController</servlet-name>
-        <url-pattern>/fetchCartProducts</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>CartItems</servlet-name>
         <url-pattern>/CartItems</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderController</servlet-name>
+        <url-pattern>/placeOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlaceOrderController</servlet-name>
+        <url-pattern>/placeorder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
