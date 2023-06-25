@@ -16,6 +16,15 @@ public class Product {
     private String size;
     private int price;
     private int quantity;
+    private String buytype;
+
+    public String getBuytype() {
+        return buytype;
+    }
+
+    public void setBuytype(String buytype) {
+        this.buytype = buytype;
+    }
 
     public int getProductId() {
         return productId;

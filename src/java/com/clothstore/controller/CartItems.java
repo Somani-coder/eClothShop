@@ -6,6 +6,7 @@
 package com.clothstore.controller;
 
 import com.clothstore.model.Product;
+import com.clothstore.model.Response;
 import com.clothstore.model.User;
 import com.clothstore.repositories.CartDao;
 import com.clothstore.repositories.FetchCartDetailsDao;
@@ -16,11 +17,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -38,10 +44,10 @@ public class CartItems extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException, JSONException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           BufferedReader br
+            BufferedReader br
                     = new BufferedReader(new InputStreamReader(request.getInputStream()));
 
             String json = "";
@@ -56,14 +62,27 @@ public class CartItems extends HttpServlet {
             String command = jsonNode.get("command").asText();
 
             // 3. Convert received JSON to Article
-            User user = mapper.readValue(json, User.class);
-
             // 4. Set response type to JSON
             response.setContentType("application/json");
-            String un = user.getuName();
+            PrintWriter writer = response.getWriter();
+            JSONObject obj = new JSONObject();
             if (command.equals("FetchCart")) {
-               List<Product> cartProducts = FetchCartDetailsDao.fetchProductList(user);
-               new Gson().toJson(cartProducts, response.getWriter());
+                User user = mapper.readValue(json, User.class);
+                List<Product> cartProducts = FetchCartDetailsDao.fetchProductList(user);
+                new Gson().toJson(cartProducts, response.getWriter());
+            } else if (command.equals("RemoveCart")) {
+                String pdId = jsonNode.get("productId").asText();
+                String qty = jsonNode.get("quantity").asText();
+                boolean removeStatus = FetchCartDetailsDao.removeProductFromCart(pdId, qty);
+                if(removeStatus==true){
+                Response res = new Response();
+                res.setMsg("removed");
+                res.setStatus("failed");
+                res.setStatusCode(500);
+                obj.put("message", res.getMsg());
+                writer.append(obj.toString());
+                writer.close();
+                }
             }
         }
     }
@@ -80,7 +99,15 @@ public class CartItems extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CartItems.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CartItems.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
+            Logger.getLogger(CartItems.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -94,7 +121,15 @@ public class CartItems extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CartItems.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CartItems.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
+            Logger.getLogger(CartItems.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -32,7 +32,7 @@ public class CartDao {
             Connection con = DriverManager.getConnection(url, user, password);
 
             PreparedStatement ps = con.prepareStatement(
-                    "insert into carttable values(?,?,?,?,?,?)");
+                    "insert into carttable values(?,?,?,?,?,?,?)");
             for (Product prdts : products) {
                 ps.setInt(1, prdts.getProductId());
                 ps.setString(2, prdts.getDescription());
@@ -40,6 +40,7 @@ public class CartDao {
                 ps.setInt(4, prdts.getQuantity());
                 ps.setString(5, prdts.getSize());
                 ps.setString(6, prdts.getSource());
+                ps.setString(7,prdts.getBuytype());
                 ps.addBatch();
             }
 

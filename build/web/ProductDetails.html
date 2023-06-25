@@ -71,8 +71,14 @@
                         <option>S</option>
                         <option>XS</option>
                     </select>
+                    <select id = "buytype">
+                        <option>Select type</option>
+                        <option>renting</option>
+                        <option>thrifting</option>
+                    </select>
+                    
                     <input type="number" id="quantity" value="1">
-                    <button onClick="addToCart(101, 'Red Printed T-Shirt By Puma', '499', document.getElementById('size').value, document.getElementById('quantity').value, document.getElementById('img1').getAttribute('src'))">Add To Cart</button>
+                    <button onClick="addToCart(101, 'Red Printed T-Shirt By Puma', '499', document.getElementById('size').value, document.getElementById('quantity').value, document.getElementById('img1').getAttribute('src'), document.getElementById('buytype').value)">Add To Cart</button>
                     <h3>Product Details <i class="fa fa-indent"></i></h3>
                     <br>
                     <p>A fiery lion on a fiery red t-shirt is just the thing you need to ignite the fierceness inside you and appear your most confident. What makes this t-shirt more intriguing and exclusive is that the lion graphic is inspired by bohemian styles and patterns. It has been given a completely bohemian outline and inward design.</p>
@@ -178,7 +184,7 @@
             <!------------js for toggle menu------------->
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
             <script type="text/javascript">
-                        function addToCart(productId, desc, price, size, quantity, img)
+                        function addToCart(productId, desc, price, size, quantity, img,buytype)
                         {
                             productId =randomNumber();
                                     var productData = '{"action":"add_cart","products":[]}';
@@ -189,7 +195,7 @@
 //                                ]
 //                            };
                             var obj = JSON.parse(productData);
-                            obj['products'].push({"productId": productId, "description": desc, "price": price, "quantity": quantity, "size": size, "source": img});
+                            obj['products'].push({"productId": productId, "description": desc, "price": price, "quantity": quantity, "size": size, "source": img,"buytype":buytype});
                             localStorage.setItem("cartData", JSON.stringify(obj));
 
 

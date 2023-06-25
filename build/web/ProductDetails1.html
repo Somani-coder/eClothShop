@@ -36,35 +36,31 @@
         <div class="small-container single-product">
             <div class="row">
                 <div class="col-2">
-                    <img src="
-                         https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
+                    <img src= "https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
 
                     <div class="small-img-row">
                         <div class="small-img-col">
-                            <img src="
-                                 https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
-                        </div>
-
-                        <div class="small-img-col">
-                            <img src="
-                                 https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
-                        </div>
-
-                        <div class="small-img-col">
-                            <img src="
-                                 https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
-                        </div>
-
-                        <div class="small-img-col">
                             <img src="https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
+                        </div>
+
+                        <div class="small-img-col">
+                            <img src=" https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
+                        </div>
+
+                        <div class="small-img-col">
+                            <img src=" https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
+                        </div>
+
+                        <div class="small-img-col">
+                            <img src=" https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
                         </div>
                     </div>
 
                 </div>
                 <div class="col-2">
-                    <img id="img1" src="https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="30%">
-                    <p>Home / gown</p>
-                    <h1 id="desc">white bridal gown</h1>
+                    <img id="img1" src=" https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="30%">
+                    <p>Home / T-shirt</p>
+                    <h1 id="desc">Red Printed T-Shirt By Puma</h1>
                     <h4 id ="price">price: ₹499</h4>
                     <select id = "size">
                         <option>Select Size</option>
@@ -75,8 +71,14 @@
                         <option>S</option>
                         <option>XS</option>
                     </select>
+                    <select id = "buytype">
+                        <option>Select type</option>
+                        <option>renting</option>
+                        <option>thrifting</option>
+                    </select>
+                    
                     <input type="number" id="quantity" value="1">
-                    <button onClick="addToCart(102, 'white bridal gown', '599', document.getElementById('size').value, document.getElementById('quantity').value, document.getElementById('img1').getAttribute('src'))">Add To Cart</button>
+                    <button onClick="addToCart(101, 'Red Printed T-Shirt By Puma', '499', document.getElementById('size').value, document.getElementById('quantity').value, document.getElementById('img1').getAttribute('src'), document.getElementById('buytype').value)">Add To Cart</button>
                     <h3>Product Details <i class="fa fa-indent"></i></h3>
                     <br>
                     <p>A fiery lion on a fiery red t-shirt is just the thing you need to ignite the fierceness inside you and appear your most confident. What makes this t-shirt more intriguing and exclusive is that the lion graphic is inspired by bohemian styles and patterns. It has been given a completely bohemian outline and inward design.</p>
@@ -182,11 +184,10 @@
             <!------------js for toggle menu------------->
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
             <script type="text/javascript">
-                        function addToCart(productId, desc, price, size, quantity, img)
+                        function addToCart(productId, desc, price, size, quantity, img,buytype)
                         {
-
-                          productId = randomNumber(1000,9000);
-                            var productData = '{"action":"add_cart","products":[]}';
+                            productId =randomNumber();
+                                    var productData = '{"action":"add_cart","products":[]}';
 
 //                            var productData = {
 //                                "action": "cart",
@@ -194,7 +195,7 @@
 //                                ]
 //                            };
                             var obj = JSON.parse(productData);
-                            obj['products'].push({"productId": productId, "description": desc, "price": price, "quantity": quantity, "size": size, "source": img});
+                            obj['products'].push({"productId": productId, "description": desc, "price": price, "quantity": quantity, "size": size, "source": img,"buytype":buytype});
                             localStorage.setItem("cartData", JSON.stringify(obj));
 
 
@@ -230,7 +231,6 @@
                         function randomNumber(min, max) {
                             return Math.floor(Math.random() * (max - min) + min);
                         }
-
 
 
             </script>

@@ -28,7 +28,7 @@
                 </nav>
                 <li><a href="cart.html"> <img src="https://i.pinimgjcom/564x/9e/b3/1f/9eb31f1397aa013972c607f8d38923fd.jpg" width="30px" height="30px"></a></li>
                 <li><a href="ordersection.html"><img src="https://w7.pngwing.com/pngs/813/633/png-transparent-burger-line-list-menu-nav-navigation-option-mobile-basic-icon-thumbnail.png"
-                                    class="menu-icon"></a></li>
+                                                     class="menu-icon"></a></li>
             </div>
         </div>
         <!----------- cart items details ------------->
@@ -40,6 +40,8 @@
                     <th>Quantity</th>
                     <th>Size</th>
                     <th>Total</th>
+                    <th>product Id</th>
+                    <th>buying type</th>
                     <th>action</th>
                 </tr>
                 <tbody id="myTable">
@@ -80,7 +82,7 @@
                 <table id ="totalCartAmountTable">
                     <tr>
                         <td>Subtotal</td>
-<!--                    <button type="button" onClick="updateCartDetail()">Click Me!</button>-->
+                        <!--                    <button type="button" onClick="updateCartDetail()">Click Me!</button>-->
                     </tr>
 
                     <tr>
@@ -143,10 +145,10 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
 
         <script type="text/javascript">
-                window.onload = loadData(); 
+                window.onload = loadData();
                 function loadData() {
-                    
-                   updateCartDetail();
+
+                    updateCartDetail();
                 }
                 function updateCartDetail()
                 {
@@ -177,10 +179,7 @@
                             //  location.href = "regmodal.html";
                         }
                     });
-//                            alert(localStorage.getItem('cartData'));
-//                            var productsSelected = JSON.parse(localStorage.getItem('cartData'));
-//                            alert(productsSelected);
-                    // buildTable(productsSelected);
+
                 }
                 function OnSuccess(response) {
 
@@ -208,7 +207,8 @@
                         var td2 = document.createElement('td');
                         var td3 = document.createElement('td');
                         var td4 = document.createElement('td');
-                        var td5 = document.createElement('td');
+                        var td5 =document.createElement('td');
+                        var prdid = document.createElement('td');
                         var tdd = prdts[rowindex].source;
                         var img = document.createElement('img');
                         img.src = tdd;
@@ -219,22 +219,29 @@
                         subtotalAmount = subtotalAmount + totalprice;
                         var text3 = document.createTextNode(totalprice);
                         var size = document.createTextNode(prdts[rowindex].size);
+                        var prdouct = document.createTextNode(prdts[rowindex].productId);
+                        var buyType=document.createTextNode(prdts[rowindex].buytype);
                         var remvBtn = document.createElement('button');
                         remvBtn.innerHTML = "REMOVE";
                         remvBtn.onclick = function ()
                         {
-                            
-                            removeFromCart();
+
+                            removeFromCart(this);
                         }
 
                         td1.appendChild(img);
                         td2.appendChild(text2);
                         td3.appendChild(text3);
                         td4.appendChild(remvBtn);
+                        prdid.appendChild(prdouct);
+                        td5.appendChild(buyType);
+                        
                         tr.appendChild(td1);
                         tr.appendChild(td2);
                         tr.appendChild(size);
                         tr.appendChild(td3);
+                        tr.appendChild(prdid);
+                        tr.appendChild(td5);
                         tr.appendChild(td4);
 
 
@@ -257,10 +264,52 @@
                 {
                     window.location.href = "orderdetailspage.html";
                 }
-                function removeFromCart()
+                function removeFromCart(ctrl)
                 {
-                    
+                    var currentRow = $(ctrl).closest('tr');
+
+                    var productId = currentRow.find("td:eq(3)").text();
+                    var quantityVal = currentRow.find("td:eq(1)").text();
+
+//                    var $columns = $row.find('td');
+//                    
+//                    $columns.addClass('row-highlight');
+//                    jQuery.each($columns, function (i, item) {
+//                     if(i ===3){
+//                         alert(item);
+//                     }
+//
+//                    });
+                    $(ctrl).parents("tr").remove();
+
                 }
+                function removeFromDB(productId, quantityVal)
+                {
+                    var removeProductData = new Object();
+                    removeProductData.uName = "somani@gmail.com";
+
+                    removeProductData.command = "RemoveCart";
+                    removeProductData.productId = productId;
+                    removeProductData.quantity = quantityVal;
+
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8080/eClothShop/CartItems",
+                        data: JSON.stringify(removeProductData),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            alert(response.message);
+                        },
+                        failure: function (response) {
+                            alert(response.message);
+                            //  location.href = "regmodal.html";
+                        }
+                    });
+
+                }
+
+
         </script>
     </body>
 
