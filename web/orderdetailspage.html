@@ -20,23 +20,22 @@
                 <nav>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="">Products</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Contact</a></li>
-                        <li><a href="">Account</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="login.html">Account</a></li>
                     </ul>
                 </nav>
-                <img src="https://i.pinimg.com/564x/9e/b3/1f/9eb31f1397aa013972c607f8d38923fd.jpg" width="30px" height="30px">
-                <img
-                    src="https://w7.pngwing.com/pngs/813/633/png-transparent-burger-line-list-menu-nav-navigation-option-mobile-basic-icon-thumbnail.png"
-                    class="menu-icon">
+                <li><a href="cart.html"><img src="https://i.pinimg.com/564x/9e/b3/1f/9eb31f1397aa013972c607f8d38923fd.jpg" width="30px" height="30px"></a></li>
+                <li><a href="ordersection.html"><img
+                            src="https://w7.pngwing.com/pngs/813/633/png-transparent-burger-line-list-menu-nav-navigation-option-mobile-basic-icon-thumbnail.png"
+                            class="menu-icon"></a></li>
             </div>
         </div>
 
         <div class="order-details"> 
-            <p><b>Order Number:</b>123456</p>
-            <p><b>Order Date</b>: June 22, 2023</p>
-            <p><b>Status:</b> Shipped</p>
+            
+            <p id ="orderDt"></p>
+            <p><b>Status:</b> In Cart</p>
 
             <h2>1.Select your Delivery Address Options</h2>
             <div class="delivery-locations">
@@ -119,18 +118,33 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
 
         <script type="text/javascript">
+                window.onload = loadDate();
+                function loadDate() {
+                    
+                    document.getElementById("orderDt").innerHTML ='Order Date: ' +
+                            formatAMPM();
+                }
+                function formatAMPM() {
+                    var d = new Date(),
+                            minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
+                            hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
+                            ampm = d.getHours() >= 12 ? 'pm' : 'am',
+                            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                    return days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + ':' + minutes + ampm;
+                }
 
-                var add1 ;
-                var add2 ;
-                var add3 ;
-                var paymentMethod ;
+                var address1;
+                var address2;
+                var address3;
+                var paymentMethod;
                 function placeOrder(add1, add2, add3, payment)
                 {
-                    add1=add1;
-                    add2=add2;
-                    add3=add3;
-                    paymentMethod=payment;
-                    alert("order placed.."+add1);
+                    address1 = add1;
+                    address2 = add2;
+                    address3 = add3;
+                    paymentMethod = payment;
+
                     getCartDetail();
                 }
                 function getCartDetail()
@@ -173,7 +187,7 @@
                 function confirmOrder(response)
                 {
 
-                    var productData = '{"action":"add_order","products":[]}';
+                    var productData = '{"command":"add_order","products":[]}';
                     var obj = JSON.parse(productData);
 
                     var rowindex = 0;
@@ -182,9 +196,10 @@
                         var productName = response[rowindex].description;
                         var price = response[rowindex].price;
                         var quantity = response[rowindex].quantity;
+                        var address = address1 + address2 + address3;
 
 
-                        obj['products'].push({"orderId": 111, "productName": productName, "price": price, "quantity": quantity, "address": add1 + add2 + add3, "paymentMethod": paymentMethod, "source": source});
+                        obj['products'].push({"orderId": 111, "productName": productName, "price": price, "quantity": quantity, "address": address, "paymentMethod": paymentMethod, "source": source});
 
 
                     }
@@ -196,7 +211,7 @@
                     //calling backend to store order details
                     $.ajax({
                         type: "POST",
-                        url: "http://localhost:8080/eClothShop/placeOrder",
+                        url: "http://localhost:8080/eClothShop/placeorder",
                         data: JSON.stringify(obj),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
@@ -204,7 +219,7 @@
                             alert(response.message);
                             if (response.message === 'Added to order successfully..')
                             {
-                                alert("saved to order")
+
                                 // window.location.href = "index.html";
                             } else
                             {

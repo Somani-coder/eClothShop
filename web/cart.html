@@ -19,17 +19,16 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Products</a></li>
-                        <li><a href="">About</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
                         <li><a href="">Contact</a></li>
-                        <li><a href="">Account</a></li>
+                        <li><a href="login.html">Account</a></li>
                     </ul>
                 </nav>
-                <img src="https://i.pinimgjcom/564x/9e/b3/1f/9eb31f1397aa013972c607f8d38923fd.jpg" width="30px" height="30px">
-                <img
-                    src="https://w7.pngwing.com/pngs/813/633/png-transparent-burger-line-list-menu-nav-navigation-option-mobile-basic-icon-thumbnail.png"
-                    class="menu-icon">
+                <li><a href="cart.html"> <img src="https://i.pinimgjcom/564x/9e/b3/1f/9eb31f1397aa013972c607f8d38923fd.jpg" width="30px" height="30px"></a></li>
+                <li><a href="ordersection.html"><img src="https://w7.pngwing.com/pngs/813/633/png-transparent-burger-line-list-menu-nav-navigation-option-mobile-basic-icon-thumbnail.png"
+                                    class="menu-icon"></a></li>
             </div>
         </div>
         <!----------- cart items details ------------->
@@ -81,7 +80,7 @@
                 <table id ="totalCartAmountTable">
                     <tr>
                         <td>Subtotal</td>
-                    <button type="button" onClick="updateCartDetail()">Click Me!</button>
+<!--                    <button type="button" onClick="updateCartDetail()">Click Me!</button>-->
                     </tr>
 
                     <tr>
@@ -92,7 +91,7 @@
                 </table>
 
             </div>
-            
+
             <li><button type="button" onclick="rediredtToOrder()" >Buy Now</button> </li>
 
 
@@ -144,115 +143,124 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
 
         <script type="text/javascript">
-                        function updateCartDetail()
-                        {
-                            var userData = new Object();
-                            userData.uName = "somani@gmail.com";
+                window.onload = loadData(); 
+                function loadData() {
+                    
+                   updateCartDetail();
+                }
+                function updateCartDetail()
+                {
+                    var userData = new Object();
+                    userData.uName = "somani@gmail.com";
 
-                            userData.command = "FetchCart";
+                    userData.command = "FetchCart";
 
-                            $.ajax({
-                                type: "POST",
-                                url: "http://localhost:8080/eClothShop/CartItems",
-                                data: JSON.stringify(userData),
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                success: function (response) {
-                                    buildTable(response);
-                                    //                                   $.each(response, function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8080/eClothShop/CartItems",
+                        data: JSON.stringify(userData),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            buildTable(response);
+                            //                                   $.each(response, function () {
 
 //                                        $.each(this, function (key, value) {
 //                                            alert(key);
 //                                            alert(value);
 //                                        });
-                                    //                                   });
+                            //                                   });
 
-                                },
-                                failure: function (response) {
-                                    alert(response.message);
-                                    //  location.href = "regmodal.html";
-                                }
-                            });
+                        },
+                        failure: function (response) {
+                            alert(response.message);
+                            //  location.href = "regmodal.html";
+                        }
+                    });
 //                            alert(localStorage.getItem('cartData'));
 //                            var productsSelected = JSON.parse(localStorage.getItem('cartData'));
 //                            alert(productsSelected);
-                            // buildTable(productsSelected);
+                    // buildTable(productsSelected);
+                }
+                function OnSuccess(response) {
+
+                    alert(response.message());
+                    buildTable(response);
+                }
+
+                function buildTable(prdts) {
+                    console.log("build table function called", prdts);
+                    var table = document.getElementById('myTable');
+                    //var prdts = data['products'];
+                    var noOfrows = prdts.length;
+                    var rowindex = 0;
+                    var startIndex = 0;
+                    var tr;
+                    var table = document.getElementById('myTable');
+                    var subtotalAmount = 0;
+                    for (var i = 0; i < prdts.length; i++) {
+                        tr = document.createElement('tr');
+                        // for (var j = 1; j <= 3; j++) {
+
+
+
+                        var td1 = document.createElement('td');
+                        var td2 = document.createElement('td');
+                        var td3 = document.createElement('td');
+                        var td4 = document.createElement('td');
+                        var td5 = document.createElement('td');
+                        var tdd = prdts[rowindex].source;
+                        var img = document.createElement('img');
+                        img.src = tdd;
+                        //document.getElementById('body').appendChild(img);
+                        //var text1 = document.
+                        var text2 = document.createTextNode(prdts[rowindex].quantity);
+                        var totalprice = prdts[rowindex].quantity * prdts[rowindex].price;
+                        subtotalAmount = subtotalAmount + totalprice;
+                        var text3 = document.createTextNode(totalprice);
+                        var size = document.createTextNode(prdts[rowindex].size);
+                        var remvBtn = document.createElement('button');
+                        remvBtn.innerHTML = "REMOVE";
+                        remvBtn.onclick = function ()
+                        {
+                            
+                            removeFromCart();
                         }
-                        function OnSuccess(response) {
 
-                            alert(response.message());
-                            buildTable(response);
-                        }
-
-                        function buildTable(prdts) {
-                            console.log("build table function called", prdts);
-                            var table = document.getElementById('myTable');
-                            //var prdts = data['products'];
-                            var noOfrows = prdts.length;
-                            var rowindex = 0;
-                            var startIndex = 0;
-                            var tr;
-                            var table = document.getElementById('myTable');
-                            var subtotalAmount = 0;
-                            for (var i = 0; i < prdts.length; i++) {
-                                tr = document.createElement('tr');
-                                // for (var j = 1; j <= 3; j++) {
+                        td1.appendChild(img);
+                        td2.appendChild(text2);
+                        td3.appendChild(text3);
+                        td4.appendChild(remvBtn);
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(size);
+                        tr.appendChild(td3);
+                        tr.appendChild(td4);
 
 
-
-                                var td1 = document.createElement('td');
-                                var td2 = document.createElement('td');
-                                var td3 = document.createElement('td');
-                                var td4 = document.createElement('td');
-                                var td5 =document.createElement('td');
-                                var tdd = prdts[rowindex].source;
-                                var img = document.createElement('img');
-                                img.src = tdd;
-                                //document.getElementById('body').appendChild(img);
-                                //var text1 = document.
-                                var text2 = document.createTextNode(prdts[rowindex].quantity);
-                                var totalprice = prdts[rowindex].quantity * prdts[rowindex].price;
-                                subtotalAmount=subtotalAmount +totalprice;
-                                var text3 = document.createTextNode(totalprice);
-                                var size = document.createTextNode(prdts[rowindex].size);
-                                var remvBtn = document.createElement('button');
-                                remvBtn.innerHTML = "REMOVE";
-                                remvBtn.onclick = function ()
-                                {
-                                    alert("removed.");
-                                    removeFromCart();
-                                }
-
-                                td1.appendChild(img);
-                                td2.appendChild(text2);
-                                td3.appendChild(text3);
-                                td4.appendChild(remvBtn);
-                                tr.appendChild(td1);
-                                tr.appendChild(td2);
-                                tr.appendChild(size);
-                                tr.appendChild(td3);
-                                tr.appendChild(td4);
-
-
-                                //table.appendChild(tr);
-                                //    }
-                                table.appendChild(tr);
+                        //table.appendChild(tr);
+                        //    }
+                        table.appendChild(tr);
 
 
 
 //                                var tdata = prdts['source'];
 //                                var row = '<tr><td>${}</td> <td>prdts[quantity]</td><td>${prdts[price]}</td></tr>';
 //                                table.innerHTML += row;
-                                rowindex++;
+                        rowindex++;
 
-                            }
-                            document.getElementById('amount').innerHTML = subtotalAmount;
-                        }
-                        
-                        function rediredtToOrder()
-                        {
-                            window.location.href = "orderdetailspage.html";
-                        }
+                    }
+                    document.getElementById('amount').innerHTML = subtotalAmount;
+                }
+
+                function rediredtToOrder()
+                {
+                    window.location.href = "orderdetailspage.html";
+                }
+                function removeFromCart()
+                {
+                    
+                }
         </script>
     </body>
 

@@ -22,14 +22,12 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
                         <li><a href="about.html">About</a></li>
-                        <li><a href="">Contact</a></li>
                         <li><a href="login.html">Account</a></li>
                     </ul>
                 </nav>
-                <img src="https://i.pinimg.com/564x/9e/b3/1f/9eb31f1397aa013972c607f8d38923fd.jpg" width="30px" height="30px">
-                <img
-                    src="https://w7.pngwing.com/pngs/813/633/png-transparent-burger-line-list-menu-nav-navigation-option-mobile-basic-icon-thumbnail.png"
-                    class="menu-icon">
+                <li><a href="cart.html"> <img src="https://i.pinimgjcom/564x/9e/b3/1f/9eb31f1397aa013972c607f8d38923fd.jpg" width="30px" height="30px"></a></li>
+                <li><a href="ordersection.html"><img src="https://w7.pngwing.com/pngs/813/633/png-transparent-burger-line-list-menu-nav-navigation-option-mobile-basic-icon-thumbnail.png"
+                                                     class="menu-icon"></a></li>
             </div>
         </div>
 
@@ -39,22 +37,22 @@
             <div class="row">
                 <div class="col-2">
                     <img src="
-https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
+                         https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
 
                     <div class="small-img-row">
                         <div class="small-img-col">
                             <img src="
-https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
+                                 https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
                         </div>
 
                         <div class="small-img-col">
                             <img src="
-https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
+                                 https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
                         </div>
 
                         <div class="small-img-col">
                             <img src="
-https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
+                                 https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="100%">
                         </div>
 
                         <div class="small-img-col">
@@ -186,15 +184,8 @@ https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="
             <script type="text/javascript">
                         function addToCart(productId, desc, price, size, quantity, img)
                         {
-                            //            var products = new Object();
-                            //            products.id=productId;
-                            //            products.desc=desc;
-                            //            products.price=price;
-                            //            products.size=size;
-                            //            products.quantity=quantity;
-                            //            products.img=img;
-                            //            localStorage.setItem('products',JSON.stringify(products));
-                            alert("test");
+
+                          productId = randomNumber(1000,9000);
                             var productData = '{"action":"add_cart","products":[]}';
 
 //                            var productData = {
@@ -205,59 +196,41 @@ https://i.pinimg.com/564x/f8/38/ac/f838ac46eb3eb6ab2a15d44a75490049.jpg" width="
                             var obj = JSON.parse(productData);
                             obj['products'].push({"productId": productId, "description": desc, "price": price, "quantity": quantity, "size": size, "source": img});
                             localStorage.setItem("cartData", JSON.stringify(obj));
-                            
-                            
+
+
                             //calling backend to store cart details
-                             $.ajax({
-                                        type: "POST",
-                                        url: "http://localhost:8080/eClothShop/addCart",
-                                        data: JSON.stringify(obj),
-                                        contentType: "application/json; charset=utf-8",
-                                        dataType: "json",
-                                        success: function (response) {
-                                            alert(response.message);
-                                            if (response.message === 'Added to cart successfully..')
-                                            {
-                                                alert("saved to cart")
-                                               // window.location.href = "index.html";
-                                            } else
-                                            {
-                                                //window.location.href = "regmodal.html";
-                                            }
-                                        },
-                                        failure: function (response) {
-                                            alert(response.message);
-                                          //  location.href = "regmodal.html";
-                                        }
-                                    });
+                            $.ajax({
+                                type: "POST",
+                                url: "http://localhost:8080/eClothShop/addCart",
+                                data: JSON.stringify(obj),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (response) {
+                                    alert(response.message);
+                                    if (response.message === 'Added to cart successfully..')
+                                    {
+                                        alert("saved to cart")
+                                        // window.location.href = "index.html";
+                                    } else
+                                    {
+                                        //window.location.href = "regmodal.html";
+                                    }
+                                },
+                                failure: function (response) {
+                                    alert(response.message);
+                                    //  location.href = "regmodal.html";
+                                }
+                            });
 
                         }
-                         function OnSuccess(response) {
+                        function OnSuccess(response) {
 
-                                    alert(response.message());
-                                }
-                        //        var noti = document.querySelector('h1');
-                        //        var select = document.querySelector('.select');
-                        //        var button = document.getElementByName('button');
-                        //        for(but of button)
-                        //        {
-                        //            but.addEventListener('click', (e)=>{
-                        //                var add = Number(noti.getAttribute('data-count')|| 0);
-                        //                noti.setAttribute('data-count', add + 1);
-                        //                noti.classList.add('zero');
-                        //                
-                        //                //copy and paste element//
-                        //                var parent = e.target.parentNode;
-                        //                var clone = parent.clone(true);
-                        //                select.appendChild(clone);
-                        //                select.lastElementChild.innerText = "Add To Cart";
-                        //                if (clone) {
-                        //                    noti.onclick =()=>{
-                        //                        select.classList.toggle('display');
-                        //                    }
-                        //                }
-                        //            })
-                        //        }
+                            alert(response.message());
+                        }
+                        function randomNumber(min, max) {
+                            return Math.floor(Math.random() * (max - min) + min);
+                        }
+
 
 
             </script>

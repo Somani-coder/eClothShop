@@ -1,113 +1,215 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title> Explore Now- Attire </title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link href="https://fonts,googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title> ordet details </title>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts,googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
 
 
-<body>
-  <div class="container">
-    <div class="navbar">
-      <div class="logo">
-        <img src="https://i.pinimg.com/564x/fd/83/c5/fd83c5d3c62594a851ecd31abf1109b9.jpg" width="125px">
-      </div>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="">Products</a></li>
-          <li><a href="">About</a></li>
-          <li><a href="">Contact</a></li>
-          <li><a href="">Account</a></li>
-        </ul>
-      </nav>
-      <img src="https://i.pinimg.com/564x/9e/b3/1f/9eb31f1397aa013972c607f8d38923fd.jpg" width="30px" height="30px">
-      <img
-        src="https://w7.pngwing.com/pngs/813/633/png-transparent-burger-line-list-menu-nav-navigation-option-mobile-basic-icon-thumbnail.png"
-        class="menu-icon">
-    </div>
-  </div>
-  
-  <div class="small-container">
-
-    <div class="row row-2">
-      <h2>Order History</h2>
-      <select>
-        <option>Default Shorting</option>
-        <option>Short by Price</option>
-        <option>Short by Popularity</option>
-        <option>Sort by Rating</option>
-        <option>Sort by Sale</option>
-
-      </select>
-    </div>
-<div class="order">
-        <h2>Order #12345</h2>
-        <div class="item">
-            <div class="name">bridal pink lehenga</div>
-            <div class="price">₹2999</div>
-            <div class="quantity">Quantity: 1</div>
+    <body>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="https://i.pinimg.com/564x/fd/83/c5/fd83c5d3c62594a851ecd31abf1109b9.jpg" width="125px">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="login.html">Account</a></li>
+                    </ul>
+                </nav>
+                <li><a href="cart.html"><img src="https://i.pinimg.com/564x/9e/b3/1f/9eb31f1397aa013972c607f8d38923fd.jpg" width="30px" height="30px"></a></li>
+                <li><a href="ordersection.html"><img
+                    src="https://w7.pngwing.com/pngs/813/633/png-transparent-burger-line-list-menu-nav-navigation-option-mobile-basic-icon-thumbnail.png"
+                    class="menu-icon"></a></li>
+            </div>
         </div>
-        <div class="item">
-            <div class="name">gorgeous rose floral bun</div>
-            <div class="price">₹399</div>
-            <div class="quantity">Quantity: 2</div>
+        <!----------- cart items details ------------->
+        <div class="small-container cart-page">
+
+            <table>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Product Image</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Order Address</th>
+                    <th>Payment Method</th>
+                    <th>Order Status</th>
+                    
+                </tr>
+                <tbody id="myTable">
+                </tbody>
+              
+            </table>
+
+          
+
+            
+
+
+
         </div>
-    </div>
+        <!------------ Footer ------------->
+        <div class="footer">
+            <div class="Brands">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col-1">
+                            <h3>Download Our App</h3>
+                            <p>Download App For Android And ios Mobile Phone.</p>
+                        </div>
+                        <div class="footer-col-2">
+                            <img src="https://i.pinimg.com/564x/fd/83/c5/fd83c5d3c62594a851ecd31abf1109b9.jpg">
+                            <p>Our Purpose Is To Sustainably Make The Pleasure And Benifits Of Buying and renting The Products To the
+                                many.</p>
+                        </div>
+                        <div class="footer-col-3">
+                            <h3>Useful Links</h3>
+                            <ul>
+                                <li>Coupons</li>
+                                <li>Blog Post</li>
+                                <li>Return Policy</li>
+                                <li>Join Affiliate</li>
+                            </ul>
+                        </div>
+                        <div class="footer-col-4">
+                            <h3>Follow Us</h3>
+                            <ul>
+                                <li>Facebook</li>
+                                <li>Twitter</li>
+                                <li>Instagram</li>
+                                <li>YouTube</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
 
-    <div class="order">
-        <h2>Order #67890</h2>
-        <div class="item">
-            <div class="name">south indian neck piece and ear piece for an elegant bridal look</div>
-            <div class="price">₹999</div>
-            <div class="quantity">Quantity: 2</div>
+                </div>
+
+            </div>
+            <!------------js for toggle menu------------->
+
         </div>
-    </div>
 
-  <!------------ Footer ------------->
-  <div class="footer">
-    <div class="Brands">
-      <div class="container">
-        <div class="row">
-          <div class="footer-col-1">
-            <h3>Download Our App</h3>
-            <p>Download App For Android And ios Mobile Phone.</p>
-          </div>
-          <div class="footer-col-2">
-            <img src="https://i.pinimg.com/564x/fd/83/c5/fd83c5d3c62594a851ecd31abf1109b9.jpg">
-            <p>Our Purpose Is To Sustainably Make The Pleasure And Benifits Of Buying and renting The Products To the
-              many.</p>
-          </div>
-          <div class="footer-col-3">
-            <h3>Useful Links</h3>
-            <ul>
-              <li>Coupons</li>
-              <li>Blog Post</li>
-              <li>Return Policy</li>
-              <li>Join Affiliate</li>
-            </ul>
-          </div>
-          <div class="footer-col-4">
-            <h3>Follow Us</h3>
-            <ul>
-              <li>Facebook</li>
-              <li>Twitter</li>
-              <li>Instagram</li>
-              <li>YouTube</li>
-            </ul>
-          </div>
-        </div>
-        <hr>
+        <!------------js for product gallery-------->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
 
-      </div>
+        <script type="text/javascript">
+                window.onload = loadData(); 
+                function loadData() {
+                    
+                   updateOrderDetail();
+                }
+                function updateOrderDetail()
+                {
+                    var userData = new Object();
+                    userData.uName = "somani@gmail.com";
 
-    </div>
-  </div>
-</body>
+                    userData.command = "FetchOrder";
+
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8080/eClothShop/placeorder",
+                        data: JSON.stringify(userData),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            buildTable(response);
+                            
+                        },
+                        failure: function (response) {
+                            alert(response.message);
+                            //  location.href = "regmodal.html";
+                        }
+                    });
+//                          
+                }
+                function OnSuccess(response) {
+
+                    alert(response.message());
+                    buildTable(response);
+                }
+
+                function buildTable(prdts) {
+                    console.log("build table function called", prdts);
+                    var table = document.getElementById('myTable');
+                    //var prdts = data['products'];
+                    var noOfrows = prdts.length;
+                    var rowindex = 0;
+                    var startIndex = 0;
+                    var tr;
+                   // var table = document.getElementById('myTable');
+                    var subtotalAmount = 0;
+                    for (var i = 0; i < prdts.length; i++) {
+                        tr = document.createElement('tr');
+                        var td1 = document.createElement('td');
+                        var td2 = document.createElement('td');
+                        var td3 = document.createElement('td');
+                        var td4 = document.createElement('td');
+                        var td5 = document.createElement('td');
+                        var td6 = document.createElement('td');
+                        var td7 = document.createElement('td');
+                        var td8 = document.createElement('td');
+                        
+                        
+                        var ordId = document.createTextNode(prdts[rowindex].orderId);
+                        var imgSrc=prdts[rowindex].source;
+                        var img = document.createElement('img');
+                        img.src = imgSrc;
+                        //document.getElementById('body').appendChild(img);
+                        //var text1 = document.
+                        var productName =document.createTextNode(prdts[rowindex].productName);
+                        var qnty = document.createTextNode(prdts[rowindex].quantity);
+                        var price = document.createTextNode(prdts[rowindex].price);
+                        var address = document.createTextNode(prdts[rowindex].address);
+                        var paymentMethod = document.createTextNode(prdts[rowindex].paymentMethod);
+                        td1.appendChild(ordId);
+                        td2.appendChild(img);
+                        td3.appendChild(productName);
+                        td4.appendChild(qnty);
+                        td5.appendChild(price);
+                        td6.appendChild(address);
+                        td7.appendChild(paymentMethod);
+                        td8.appendChild(document.createTextNode("In transiṭ"));
+                       
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        tr.appendChild(td4);
+                        tr.appendChild(td5);
+                        tr.appendChild(td6);
+                        tr.appendChild(td7);
+                        tr.appendChild(td8);
+
+
+
+
+                        //table.appendChild(tr);
+                        //    }
+                        table.appendChild(tr);
+
+
+
+//                                var tdata = prdts['source'];
+//                                var row = '<tr><td>${}</td> <td>prdts[quantity]</td><td>${prdts[price]}</td></tr>';
+//                                table.innerHTML += row;
+                        rowindex++;
+
+                    }
+                   
+                }
+
+                
+        </script>
+    </body>
 
 </html>

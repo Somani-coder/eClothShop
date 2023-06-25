@@ -3,28 +3,41 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/regmodal.html</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/controller/LoginController.java</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/repositories/CartDao.java</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/model/Response.java</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/repositories/FetchCartDetails.java</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/ProductDetails2.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/female-section.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/male-section.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/orderdetailspage.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/controller/Register.java</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/ProductDetails1.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/explorenow.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/model/Product.java</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/model/User.java</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/index.html</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/products.html</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/repositories/LoginDao.java</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/controller/FetchCartProductsController.java</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/controller/OrderController.java</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/login.html</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/controller/CartItems.java</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/repositories/RegisterDao.java</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/ProductDetails.html</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/WEB-INF/web.xml</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/repositories/OrderDao.java</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/style.css</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/registerUser.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/explorenow_2.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/repositories/CartDao.java</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/model/Response.java</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/ProductDetails2.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/explorenow3.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/explorenow.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/jwellary-section.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/model/Product.java</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/about.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/model/OrderDetails.java</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/controller/PlaceOrderController.java</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/ordersection.html</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/controller/AddCartController.java</file>
             <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/cart.html</file>
-            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/web/explorenow_2.html</file>
+            <file>file:/D:/ITER-PROJECT/SHOPPING/eClothShop/src/java/com/clothstore/repositories/FetchCartDetailsDao.java</file>
         </group>
     </open-files>
 </project-private>

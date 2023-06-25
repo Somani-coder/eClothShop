@@ -57,8 +57,8 @@ public class LoginDao {
 
             PreparedStatement ps = con.prepareStatement(
                     "insert into user values(?,?)") ;
-            ps.setString(1, email);
-            ps.setString(3, pwd);
+            ps.setString(2, email);
+            ps.setString(4, pwd);
 
             ResultSet rs = ps.executeQuery();
             //status = rs.next();
